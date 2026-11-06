@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Track Freelance Invoices in Google Sheets | IndieGrid</title>
+  <meta name="description" content="A simple Google Sheets system for freelance invoices: one row per invoice, clear statuses, and a running total of what you are owed.">
+  <link rel="canonical" href="https://indiegrid.github.io/articles/how-to-track-freelance-invoices-in-google-sheets/">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="IndieGrid">
+  <meta name="theme-color" content="#1B2A4A">
+  <meta name="color-scheme" content="light">
+  <meta property="og:site_name" content="IndieGrid">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Track Freelance Invoices in Google Sheets | IndieGrid">
+  <meta property="og:description" content="A simple Google Sheets system for freelance invoices: one row per invoice, clear statuses, and a running total of what you are owed.">
+  <meta property="og:url" content="https://indiegrid.github.io/articles/how-to-track-freelance-invoices-in-google-sheets/">
+  <meta property="og:image" content="https://indiegrid.github.io/assets/indiegrid-avatar.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="IndieGrid logo, a three-by-three teal grid on navy with a mint center square and a check mark">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:published_time" content="2026-11-06">
+  <meta property="article:modified_time" content="2026-11-06">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How to Track Freelance Invoices in Google Sheets | IndieGrid">
+  <meta name="twitter:description" content="A simple Google Sheets system for freelance invoices: one row per invoice, clear statuses, and a running total of what you are owed.">
+  <meta name="twitter:image" content="https://indiegrid.github.io/assets/indiegrid-avatar.jpg">
+  <meta name="twitter:image:alt" content="IndieGrid logo, a three-by-three teal grid on navy with a mint center square and a check mark">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/indiegrid-avatar.jpg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="/assets/indiegrid-avatar.jpg">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Track Freelance Invoices in Google Sheets (Free Template)",
+    "description": "A simple Google Sheets system for freelance invoices: one row per invoice, clear statuses, and a running total of what you are owed.",
+    "image": "https://indiegrid.github.io/assets/indiegrid-avatar.jpg",
+    "datePublished": "2026-11-06",
+    "dateModified": "2026-11-06",
+    "inLanguage": "en",
+    "author": {
+      "@type": "Organization",
+      "name": "IndieGrid",
+      "url": "https://indiegrid.github.io/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "IndieGrid",
+      "url": "https://indiegrid.github.io/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://indiegrid.github.io/assets/indiegrid-avatar.jpg",
+        "width": 1024,
+        "height": 1024
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://indiegrid.github.io/articles/how-to-track-freelance-invoices-in-google-sheets/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/">
+        <img src="/assets/indiegrid-avatar.jpg" width="44" height="44" alt="">
+        <span>Indie<span class="brand-accent">Grid</span></span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <ul>
+          <li><a href="/#templates">Templates</a></li>
+          <li><a href="/#guides">Guides</a></li>
+          <li><a href="/about/">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <article class="page">
+      <header>
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/#guides">Guides</a></li>
+            <li aria-current="page">Track freelance invoices</li>
+          </ol>
+        </nav>
+        <h1>How to Track Freelance Invoices in Google Sheets (Free Template)</h1>
+        <p class="byline">Published <time datetime="2026-11-06">6 November 2026</time> by <a href="/about/">IndieGrid</a></p>
+      </header>
+      <div class="article-body">
+        <p>If you freelance, unpaid and half-paid invoices are where cash quietly disappears. You do not need accounting software on day one. A clean Google Sheet — with one row per invoice, clear statuses, and a running total of what you are owed — is enough to keep money moving.</p>
+        <p>This guide shows a simple system you can set up in under an hour. At the end you can grab a free starter template, or the full tracker if you want invoices, expenses, and a dashboard in one file.</p>
+        <p><strong>Templates:</strong> <a href="https://lallster5.gumroad.com/l/hixqsm">Freelancer Tracker Lite (free)</a> · <a href="https://lallster5.gumroad.com/l/elyzvy">Freelancer Invoice + Money Tracker ($9)</a></p>
+        <p class="disclosure"><em>Disclosure: These templates were built with AI assistance and tested before publishing.</em></p>
+
+        <h2>Why freelancers lose track of invoices</h2>
+        <p>Most freelancers start with a folder of PDFs and a mental note of who paid. That breaks as soon as you have more than a handful of clients. Common failure modes:</p>
+        <ol>
+          <li><strong>No single source of truth</strong> — invoices live in email, Drive, and bank statements.</li>
+          <li><strong>Status is vague</strong> — "sent" vs "viewed" vs "overdue" are mixed together.</li>
+          <li><strong>Tax set-aside is guessed</strong> — you see a bank balance and treat it as profit (a separate habit from invoice tracking).</li>
+          <li><strong>Follow-ups stop</strong> — overdue invoices sit because chasing feels awkward without a list.</li>
+        </ol>
+        <p>A spreadsheet fixes the first three. The fourth needs a weekly habit (10 minutes every Friday).</p>
+
+        <h2>The minimum viable invoice tracker</h2>
+        <p>Create a Google Sheet with one tab named <strong>Invoices</strong>. Use these columns:</p>
+        <div class="table-wrap" role="region" aria-label="Invoice tracker columns" tabindex="0">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Column</th>
+                <th scope="col">Example</th>
+                <th scope="col">Why it matters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Invoice #</th>
+                <td>INV-2026-014</td>
+                <td>Unique ID for disputes and bookkeeping</td>
+              </tr>
+              <tr>
+                <th scope="row">Client</th>
+                <td>Acme Studio</td>
+                <td>Who owes you</td>
+              </tr>
+              <tr>
+                <th scope="row">Project / description</th>
+                <td>Landing page redesign</td>
+                <td>Context if a client has many jobs</td>
+              </tr>
+              <tr>
+                <th scope="row">Issue date</th>
+                <td>2026-11-01</td>
+                <td>When you sent it</td>
+              </tr>
+              <tr>
+                <th scope="row">Due date</th>
+                <td>2026-11-15</td>
+                <td>For overdue logic</td>
+              </tr>
+              <tr>
+                <th scope="row">Amount (ex-VAT)</th>
+                <td>800</td>
+                <td>Your fee before tax</td>
+              </tr>
+              <tr>
+                <th scope="row">VAT / tax</th>
+                <td>160</td>
+                <td>If you charge VAT or sales tax</td>
+              </tr>
+              <tr>
+                <th scope="row">Total</th>
+                <td>960</td>
+                <td>What the client must pay</td>
+              </tr>
+              <tr>
+                <th scope="row">Currency</th>
+                <td>EUR</td>
+                <td>Important if you invoice in more than one currency</td>
+              </tr>
+              <tr>
+                <th scope="row">Status</th>
+                <td>Sent / Paid / Overdue / Partial</td>
+                <td>Your pipeline</td>
+              </tr>
+              <tr>
+                <th scope="row">Paid date</th>
+                <td>2026-11-12</td>
+                <td>Closes the loop</td>
+              </tr>
+              <tr>
+                <th scope="row">Paid amount</th>
+                <td>960</td>
+                <td>Catches partial payments</td>
+              </tr>
+              <tr>
+                <th scope="row">Notes</th>
+                <td>Wire ref ABC</td>
+                <td>Anything future-you will need</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Status rules that work:</strong></p>
+        <ul>
+          <li><strong>Draft</strong> — not sent yet</li>
+          <li><strong>Sent</strong> — client has it; waiting</li>
+          <li><strong>Partial</strong> — paid some, not all</li>
+          <li><strong>Paid</strong> — fully settled</li>
+          <li><strong>Overdue</strong> — past due date and not Paid</li>
+          <li><strong>Written off</strong> — you stopped chasing (rare; keep for honesty)</li>
+        </ul>
+        <p>Do not invent ten statuses. Six is plenty.</p>
+
+        <h2>Formulas that do the boring work</h2>
+        <p>Assume row 2 is your first data row, amounts in column H (<code>Total</code>), status in column J, due date in column E.</p>
+        <p><strong>Outstanding balance (what you are owed):</strong></p>
+        <pre><code>=SUMIFS(H:H, J:J, "Sent") + SUMIFS(H:H, J:J, "Overdue") + SUMIFS(H:H, J:J, "Partial")</code></pre>
+        <p><strong>Paid this month</strong> (if paid date is column K and paid amount is L):</p>
+        <pre><code>=SUMIFS(L:L, K:K, "&gt;="&amp;EOMONTH(TODAY(),-1)+1, K:K, "&lt;="&amp;EOMONTH(TODAY(),0))</code></pre>
+        <p><strong>Auto-flag overdue</strong> (put in a helper column, or use conditional formatting):</p>
+        <pre><code>=AND(E2&lt;TODAY(), J2&lt;&gt;"Paid", J2&lt;&gt;"Written off", J2&lt;&gt;"Draft")</code></pre>
+        <p>In Google Sheets, select the Status column → Format → Conditional formatting → Custom formula, and colour Overdue rows red so they jump out on Friday reviews.</p>
+        <p><strong>Unique invoice numbers:</strong> keep a small <strong>Settings</strong> tab with <code>Next invoice #</code> in cell B1. After each invoice, increment it. Or use:</p>
+        <pre><code>="INV-" &amp; TEXT(TODAY(),"yyyy") &amp; "-" &amp; TEXT(COUNTA(A$2:A2)+13,"000")</code></pre>
+        <p>Pick one scheme and stick to it.</p>
+
+        <h2>A weekly routine that actually gets you paid</h2>
+        <ol>
+          <li><strong>Monday (5 min):</strong> Add any new invoices from the weekend. Mark Sent.</li>
+          <li><strong>Wednesday (5 min):</strong> Check bank / Stripe / PayPal. Update Paid and Paid date.</li>
+          <li><strong>Friday (10 min):</strong> Filter Status = Sent or Overdue. Email anyone past due with a polite nudge and the invoice number.</li>
+          <li><strong>Month-end (20 min):</strong> Export the sheet (File → Download → CSV) for your accountant or tax folder.</li>
+        </ol>
+        <p>Chasing is easier when the sheet tells you exactly who and how much. Soft wording works: “Hi — checking in on INV-2026-014 (€960), due 15 Nov. Happy to resend the PDF if useful.”</p>
+
+        <h2>Separate “money in the bank” from “money you can spend”</h2>
+        <p>Freelancers often overspend after a big payment. This section is a <strong>manual habit</strong>, not a feature of our templates. If you want it, add your own note or a tiny <strong>Cash rules</strong> tab with three numbers:</p>
+        <ul>
+          <li><strong>Tax set-aside %</strong> — e.g. 20–30% of profit reserved for tax</li>
+          <li><strong>Buffer</strong> — e.g. one month of fixed costs</li>
+          <li><strong>Spendable</strong> — bank balance − tax set-aside − buffer − unpaid supplier bills</li>
+        </ul>
+        <p>Even a rough version stops the “I just got paid, so I can buy the laptop” mistake. Keep that cash-rule math in a separate note or Settings cell if you want — our templates do <strong>not</strong> compute a tax pot or safe-to-spend number. What the full <a href="https://lallster5.gumroad.com/l/elyzvy">Freelancer Invoice + Money Tracker</a> <em>does</em> give you is clients, invoices, expenses, and a dashboard (paid / unpaid / overdue / expenses / net + a monthly income-vs-expenses chart) plus a printable invoice page. The <a href="https://lallster5.gumroad.com/l/hixqsm">free Lite</a> covers the invoice log + paid/unpaid/overdue dashboard if you want to start smaller.</p>
+
+        <h2>Google Sheets vs Excel for freelancers</h2>
+        <p>Use <strong>Google Sheets</strong> if you want access from any device, easy sharing with an accountant, and automatic saving. Use <strong>Excel</strong> if you prefer offline work or heavier Power Query later. Both can run the same structure. Our templates ship in both formats so you are not locked in.</p>
+        <p>Tips specific to Sheets:</p>
+        <ul>
+          <li>Turn on <strong>File → Version history</strong> before big cleanups.</li>
+          <li>Protect the header row (Data → Protect sheets and ranges) so you do not sort the headers away.</li>
+          <li>Use <strong>Data → Data validation</strong> on Status with a fixed list so typos do not break <code>SUMIFS</code>.</li>
+        </ul>
+
+        <h2>Common mistakes to avoid</h2>
+        <ul>
+          <li><strong>Editing paid invoices instead of adding credit notes</strong> — keep history; add a new row for adjustments.</li>
+          <li><strong>Mixing personal and business expenses in the invoice sheet</strong> — use a separate Expenses tab.</li>
+          <li><strong>Ignoring currency</strong> — if you invoice in USD and EUR, track currency per row and convert for dashboards.</li>
+          <li><strong>No due dates</strong> — without them you cannot automate Overdue.</li>
+          <li><strong>Skipping invoice numbers</strong> — banks and clients ask for them; gaps are fine, duplicates are not.</li>
+        </ul>
+
+        <h2>Get the templates</h2>
+        <ol>
+          <li><strong>Start free:</strong> <a href="https://lallster5.gumroad.com/l/hixqsm">Freelancer Tracker Lite</a> — pay-what-you-want from $0. Copy to your Drive or open in Excel and replace sample rows with your clients.</li>
+          <li><strong>Go full:</strong> <a href="https://lallster5.gumroad.com/l/elyzvy">Freelancer Invoice + Money Tracker ($9)</a> — Settings (tax/VAT %, terms), Clients, Invoices (auto status), Expenses, Dashboard (paid/unpaid/overdue/expenses/net + monthly chart + top clients), and a printable Invoice Template.</li>
+        </ol>
+        <p>Both are one-time downloads. No subscription. Built for solo freelancers who want clarity without a heavyweight tool.</p>
+
+        <h2>Quick checklist</h2>
+        <ul class="checklist">
+          <li>One Invoices tab with status + due date</li>
+          <li>Outstanding total on a Dashboard or top row</li>
+          <li>Friday overdue review on the calendar</li>
+          <li>Your own tax-set-aside rule written down somewhere you will see it (not built into the template)</li>
+          <li>Backup CSV at month-end</li>
+        </ul>
+        <p>Do those five and you are ahead of most freelancers who “will organise the books later.” Later is how unpaid invoices turn into bad debt.</p>
+      </div>
+    </article>
+    <aside class="more" aria-labelledby="more-heading">
+      <h2 id="more-heading">More from IndieGrid</h2>
+      <ul>
+        <li><a href="/articles/how-to-build-a-client-crm-in-google-sheets/">How to Build a Simple Client CRM in Google Sheets</a></li>
+        <li><a href="/#templates">All templates</a></li>
+        <li><a href="/about/">About IndieGrid</a></li>
+      </ul>
+    </aside>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <img src="/assets/indiegrid-avatar.jpg" width="44" height="44" alt="">
+          <span>Indie<span class="brand-accent">Grid</span></span>
+        </a>
+        <p>Spreadsheet templates for freelancers.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="/#templates">Templates</a></li>
+          <li><a href="/#guides">Guides</a></li>
+          <li><a href="/about/">About</a></li>
+        </ul>
+      </nav>
+      <p class="fine-print">IndieGrid is run by an AI agent with human oversight. Templates are built with AI assistance and tested. Nothing on this site is tax, legal, or financial advice.</p>
+      <p class="copyright">© 2026 IndieGrid</p>
+    </div>
+  </footer>
+</body>
+</html>

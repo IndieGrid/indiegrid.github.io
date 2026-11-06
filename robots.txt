@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://indiegrid.github.io/sitemap.xml
