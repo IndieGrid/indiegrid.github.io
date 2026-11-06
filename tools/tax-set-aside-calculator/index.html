@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tax set-aside calculator | IndieGrid</title>
+  <meta name="description" content="See what your chosen set-aside percent implies, the gap against money already reserved, and a per-payment rule. Not tax advice. You choose the percentage.">
+  <link rel="canonical" href="https://indiegrid.github.io/tools/tax-set-aside-calculator/">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="IndieGrid">
+  <meta name="google-site-verification" content="4gnF_WfAYc8_6B0ogqtyKVMIqHlnIOIVHq15bxw5tQ4" />
+  <meta name="theme-color" content="#1B2A4A">
+  <meta name="color-scheme" content="light">
+  <meta property="og:site_name" content="IndieGrid">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Tax set-aside calculator | IndieGrid">
+  <meta property="og:description" content="See what your chosen set-aside percent implies, the gap against money already reserved, and a per-payment rule. Not tax advice. You choose the percentage.">
+  <meta property="og:url" content="https://indiegrid.github.io/tools/tax-set-aside-calculator/">
+  <meta property="og:image" content="https://indiegrid.github.io/assets/indiegrid-avatar.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="IndieGrid logo, a three-by-three teal grid on navy with a mint center square and a check mark">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Tax set-aside calculator | IndieGrid">
+  <meta name="twitter:description" content="See what your chosen set-aside percent implies, the gap against money already reserved, and a per-payment rule. Not tax advice. You choose the percentage.">
+  <meta name="twitter:image" content="https://indiegrid.github.io/assets/indiegrid-avatar.jpg">
+  <meta name="twitter:image:alt" content="IndieGrid logo, a three-by-three teal grid on navy with a mint center square and a check mark">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/indiegrid-avatar.jpg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="/assets/indiegrid-avatar.jpg">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Tax set-aside calculator",
+    "description": "See what your chosen set-aside percent implies, the gap against money already reserved, and a per-payment rule. Not tax advice. You choose the percentage.",
+    "url": "https://indiegrid.github.io/tools/tax-set-aside-calculator/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript. No account.",
+    "isAccessibleForFree": true,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "IndieGrid",
+      "url": "https://indiegrid.github.io/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/">
+        <img src="/assets/indiegrid-avatar.jpg" width="44" height="44" alt="">
+        <span>Indie<span class="brand-accent">Grid</span></span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <ul>
+          <li><a href="/#templates">Templates</a></li>
+          <li><a href="/#guides">Guides</a></li>
+          <li><a href="/tools/">Tools</a></li>
+          <li><a href="/about/">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="tool-page" tabindex="-1">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/tools/">Tools</a></li>
+        <li aria-current="page">Tax set-aside</li>
+      </ol>
+    </nav>
+    <h1>Tax set-aside calculator</h1>
+    <p class="lede">For income you have already received, see what your own percentage says you should have reserved, and how far the reserve is from that figure.</p>
+    <p class="disclosure"><strong>Not tax advice; you choose the percentage.</strong> This page does not contain country tax rates and does not claim to know what you owe. It only applies the percent you type.</p>
+    <div class="tool-layout">
+      <form class="calc" id="set-aside-form" autocomplete="off" novalidate>
+        <label for="income">Income received
+          <input id="income" name="income" type="number" inputmode="decimal" min="0" step="0.01" required value="10000">
+        </label>
+        <span class="hint" id="income-hint">Money that arrived in the period below. Use any currency; results stay in those units.</span>
+        <label for="percent">Set-aside percent you choose
+          <input id="percent" name="percent" type="number" inputmode="decimal" min="0" max="100" step="0.1" required value="25" aria-describedby="percent-hint">
+        </label>
+        <span class="hint" id="percent-hint">A share of income, from 0 to 100. Not a legal rate.</span>
+        <label for="already">Already set aside
+          <input id="already" name="already" type="number" inputmode="decimal" min="0" step="0.01" required value="1800">
+        </label>
+        <span class="hint" id="already-hint">Cash you have actually moved into the reserve.</span>
+        <label for="period">Period
+          <select id="period" name="period">
+            <option value="month">This month</option>
+            <option value="quarter" selected>This quarter</option>
+            <option value="year">This year</option>
+          </select>
+        </label>
+        <span class="hint" id="period-hint">Labels the window. It does not change the multiplication.</span>
+        <button class="button" type="submit">Calculate</button>
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+      </form>
+      <section class="result-panel" aria-labelledby="results-heading">
+        <h2 id="results-heading">Result</h2>
+        <div id="results" aria-live="polite">
+          <dl>
+            <dt>Should have set aside</dt>
+            <dd><output id="out-should" for="income percent already">—</output></dd>
+            <dt>Gap</dt>
+            <dd><output id="out-gap" for="income percent already">—</output></dd>
+            <dt>Per-payment rule</dt>
+            <dd><output id="out-rule" for="percent">—</output></dd>
+          </dl>
+          <p id="out-reading"></p>
+          <pre class="formula" id="out-formula">Enter income, a percent, and what you have already set aside.</pre>
+        </div>
+      </section>
+    </div>
+    <div class="explainer">
+      <h2>How the gap is calculated</h2>
+      <p>A set-aside calculator answers a narrower question than a tax return. For the income you are looking at, how much should already be in a separate reserve, and how far is the reserve from that rule?</p>
+      <p>The percentage is one you type. This page does not store a country, a tax bracket, a VAT scheme, or a filing deadline. Two people with the same revenue can owe different amounts, and the amount can change when life changes. What most freelancers need first is a habit with a visible gap: choose a percentage, move that share when money arrives, and see whether the reserve is behind, level, or ahead.</p>
+      <p>Income received is the money that arrived in the period you pick: this month, this quarter, or this year. The set-aside percent is the share of that income you have decided to reserve. Already set aside is cash you have actually moved, not cash you planned to move. The period does not change the multiplication. It names the window the gap belongs to, so a quarterly shortfall is not mistaken for a yearly one.</p>
+      <p>The page uses two lines and nothing hidden behind them.</p>
+      <p>should have = income × (percent ÷ 100)<br>gap = should have − already set aside</p>
+      <p>A positive gap means the reserve is short of the rule you chose. A negative gap means you have moved more than that rule required. Zero means the transfers match the percentage. The per-payment rule is the same percentage applied to the next amount a client pays. If the rule is 25% and a 2,000 payment clears, 500 moves the same day and gets logged. Repeating that is what keeps the gap from opening again after you have just closed it.</p>
+      <h2>Worked example</h2>
+      <p>This quarter you received 10,000. You chose 25%. The reserve holds 1,800.</p>
+      <p>should have = 10,000 × 0.25 = 2,500<br>gap = 2,500 − 1,800 = 700</p>
+      <p>You are 700 short for the quarter. You can transfer 700 now if you want the quarter to land on zero, and you still move 25% of every later payment. Neither transfer is a tax payment to an authority. It is money shifted into a pot you do not spend on ordinary costs.</p>
+      <p>The form rejects a percentage above 100, because that is no longer a share of the income you entered. It will not lower the percentage because you had expenses, and it will not tell you a rate for where you live. If you later agree a different percentage with an advisor, type the new number. The previous gap was still the right reading of the previous rule.</p>
+      <p>The same arithmetic, kept beside an income log and an expense log, is what the <a href="https://lallster5.gumroad.com/l/expense-tax">Expense &amp; Tax Set-Aside Tracker</a> spreadsheet does. You choose the percentage there too. The <a href="/articles/freelancer-tax-set-aside-percentage/">set-aside guide</a> walks through how to pick a starting percentage without treating any published figure as law.</p>
+      <div class="cta-row">
+        <a class="button" href="https://lallster5.gumroad.com/l/expense-tax">Get the Expense &amp; Tax Tracker — $9</a>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <img src="/assets/indiegrid-avatar.jpg" width="44" height="44" alt="">
+          <span>Indie<span class="brand-accent">Grid</span></span>
+        </a>
+        <p>Spreadsheet templates for freelancers.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="/#templates">Templates</a></li>
+          <li><a href="/#guides">Guides</a></li>
+          <li><a href="/tools/">Tools</a></li>
+          <li><a href="/about/">About</a></li>
+        </ul>
+      </nav>
+      <p class="fine-print">IndieGrid is run by an AI agent with human oversight. Templates are built with AI assistance and tested. Nothing on this site is tax, legal, or financial advice.</p>
+      <p class="copyright">© 2026 IndieGrid</p>
+    </div>
+  </footer>
+  <script src="/tools/calc.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById("set-aside-form");
+      var error = document.getElementById("form-error");
+      var periods = { month: "this month", quarter: "this quarter", year: "this year" };
+
+      function money(value) {
+        return value.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      function read(id) {
+        return Number(document.getElementById(id).value);
+      }
+
+      function showError(message) {
+        error.hidden = false;
+        error.textContent = message;
+        document.getElementById("out-should").textContent = "—";
+        document.getElementById("out-gap").textContent = "—";
+        document.getElementById("out-rule").textContent = "—";
+        document.getElementById("out-reading").textContent = "";
+        document.getElementById("out-formula").textContent = message;
+      }
+
+      function calculate() {
+        var income = read("income");
+        var percent = read("percent");
+        var already = read("already");
+        var result = window.IndieGridCalc.taxSetAside({
+          income: income,
+          percent: percent,
+          already: already
+        });
+        if (!result.ok) {
+          showError(result.error);
+          return;
+        }
+        error.hidden = true;
+        var period = periods[document.getElementById("period").value];
+        var gap = result.gap;
+        var reading;
+        if (Math.abs(gap) < 0.005) {
+          reading = "You are level with your rule for " + period + ".";
+        } else if (gap > 0) {
+          reading = "You are short by " + money(gap) + " for " + period + ".";
+        } else {
+          reading = "You are ahead by " + money(Math.abs(gap)) + " for " + period + ".";
+        }
+        document.getElementById("out-should").textContent = money(result.should);
+        document.getElementById("out-gap").textContent = money(gap);
+        document.getElementById("out-rule").textContent = "Move " + percent + "% of each payment into the reserve.";
+        document.getElementById("out-reading").textContent = reading;
+        document.getElementById("out-formula").textContent =
+          "should have = " + income + " × (" + percent + " ÷ 100) = " + result.should + "\n" +
+          "gap = " + result.should + " − " + already + " = " + gap + "\n" +
+          "per payment = " + percent + "% of whatever arrives next";
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        calculate();
+      });
+      form.addEventListener("input", calculate);
+      calculate();
+    }());
+  </script>
+  <noscript><p>This calculator needs JavaScript in your browser. Nothing you type is sent to a server.</p></noscript>
+</body>
+</html>

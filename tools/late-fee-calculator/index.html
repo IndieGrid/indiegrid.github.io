@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Late fee calculator | IndieGrid</title>
+  <meta name="description" content="Count days late after a grace period and apply a monthly percent, an annual percent, or a flat fee you choose. Includes a reminder you can copy.">
+  <link rel="canonical" href="https://indiegrid.github.io/tools/late-fee-calculator/">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="IndieGrid">
+  <meta name="google-site-verification" content="4gnF_WfAYc8_6B0ogqtyKVMIqHlnIOIVHq15bxw5tQ4" />
+  <meta name="theme-color" content="#1B2A4A">
+  <meta name="color-scheme" content="light">
+  <meta property="og:site_name" content="IndieGrid">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Late fee calculator | IndieGrid">
+  <meta property="og:description" content="Count days late after a grace period and apply a monthly percent, an annual percent, or a flat fee you choose. Includes a reminder you can copy.">
+  <meta property="og:url" content="https://indiegrid.github.io/tools/late-fee-calculator/">
+  <meta property="og:image" content="https://indiegrid.github.io/assets/indiegrid-avatar.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="IndieGrid logo, a three-by-three teal grid on navy with a mint center square and a check mark">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Late fee calculator | IndieGrid">
+  <meta name="twitter:description" content="Count days late after a grace period and apply a monthly percent, an annual percent, or a flat fee you choose. Includes a reminder you can copy.">
+  <meta name="twitter:image" content="https://indiegrid.github.io/assets/indiegrid-avatar.jpg">
+  <meta name="twitter:image:alt" content="IndieGrid logo, a three-by-three teal grid on navy with a mint center square and a check mark">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/indiegrid-avatar.jpg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="/assets/indiegrid-avatar.jpg">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Late fee calculator",
+    "description": "Count days late after a grace period and apply a monthly percent, an annual percent, or a flat fee you choose. Includes a reminder you can copy.",
+    "url": "https://indiegrid.github.io/tools/late-fee-calculator/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript. No account.",
+    "isAccessibleForFree": true,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "IndieGrid",
+      "url": "https://indiegrid.github.io/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/">
+        <img src="/assets/indiegrid-avatar.jpg" width="44" height="44" alt="">
+        <span>Indie<span class="brand-accent">Grid</span></span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <ul>
+          <li><a href="/#templates">Templates</a></li>
+          <li><a href="/#guides">Guides</a></li>
+          <li><a href="/tools/">Tools</a></li>
+          <li><a href="/about/">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="tool-page" tabindex="-1">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/tools/">Tools</a></li>
+        <li aria-current="page">Late fee</li>
+      </ol>
+    </nav>
+    <h1>Late fee calculator</h1>
+    <p class="lede">Count the days after a due date, subtract a grace period, and apply one fee rule you type: a monthly percent, an annual percent, or a flat fee.</p>
+    <p class="disclosure">Late-fee rules vary by country and by contract. In the European Union, the Late Payment Directive is a general framework for interest and a fixed recovery amount on certain business-to-business late payments. Whether it applies, and the rate, depend on the country and the contract. This calculator does not look up that rate and is not legal advice.</p>
+    <div class="tool-layout">
+      <form class="calc" id="fee-form" autocomplete="off" novalidate>
+        <label for="amount">Invoice amount
+          <input id="amount" name="amount" type="number" inputmode="decimal" min="0" step="0.01" required value="960" aria-describedby="amount-hint">
+        </label>
+        <span class="hint" id="amount-hint">The total the client was asked to pay.</span>
+        <label for="due">Due date
+          <input id="due" name="due" type="date" required value="2026-11-01">
+        </label>
+        <label for="today">Today’s date
+          <input id="today" name="today" type="date" required>
+        </label>
+        <span class="hint" id="today-hint">Defaults to today in your calendar. Change it to test another day.</span>
+        <label for="grace">Grace period (days)
+          <input id="grace" name="grace" type="number" inputmode="numeric" min="0" step="1" required value="0" aria-describedby="grace-hint">
+        </label>
+        <span class="hint" id="grace-hint">Days after the due date before a fee starts. Use 0 if the fee starts the next day.</span>
+        <fieldset class="choices">
+          <legend>Fee rule</legend>
+          <label><input type="radio" name="mode" value="annual" checked> Annual percent</label>
+          <label><input type="radio" name="mode" value="monthly"> Monthly percent</label>
+          <label><input type="radio" name="mode" value="flat"> Flat fee</label>
+        </fieldset>
+        <div id="rate-wrap">
+          <label for="rate" id="rate-label">Annual percent
+            <input id="rate" name="rate" type="number" inputmode="decimal" min="0" step="0.1" value="8" aria-describedby="rate-hint">
+          </label>
+          <span class="hint" id="rate-hint">Simple interest. A year is 365 days and a month is 30 days on this page.</span>
+        </div>
+        <div id="flat-wrap" hidden>
+          <label for="flat">Flat fee
+            <input id="flat" name="flat" type="number" inputmode="decimal" min="0" step="0.01" value="40" aria-describedby="flat-hint">
+          </label>
+          <span class="hint" id="flat-hint">Charged once, when days late is at least 1.</span>
+        </div>
+        <button class="button" type="submit">Calculate</button>
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+      </form>
+      <section class="result-panel" aria-labelledby="results-heading">
+        <h2 id="results-heading">Result</h2>
+        <div id="results" aria-live="polite">
+          <dl>
+            <dt>Days late</dt>
+            <dd><output id="out-days" for="amount due today grace rate flat">—</output></dd>
+            <dt>Fee</dt>
+            <dd><output id="out-fee" for="amount due today grace rate flat">—</output></dd>
+          </dl>
+          <p id="out-past"></p>
+          <pre class="formula" id="out-formula">Enter an amount, dates, a grace period, and one fee rule.</pre>
+          <label for="reminder">Reminder you can copy
+            <textarea id="reminder" readonly aria-describedby="copy-hint"></textarea>
+          </label>
+          <span class="hint" id="copy-hint">Optional. Edit the tone before you send it.</span>
+          <button class="button" type="button" id="copy">Copy reminder</button>
+        </div>
+      </section>
+    </div>
+    <div class="explainer">
+      <h2>What “days late” means here</h2>
+      <p>An overdue invoice is easier to chase when the count of days and any fee come from a rule you can point at. This calculator takes the invoice amount, the due date, today’s date, a grace period, and one fee rule you type: a monthly percent, an annual percent, or a flat fee. It reports how many days count and what that rule produces. It does not decide whether your contract, or the law where you work, allows the fee.</p>
+      <p>Calendar days past due are today’s date minus the due date. Days late, the number that enters the fee, are those days minus the grace period, and never less than zero. A grace period of seven days means a bill that is five days past due still has a fee of zero. The same bill ten days past due has three days late. If today is still on or before the due date, both counts are zero.</p>
+      <p>The fee is simple interest, not compound interest. A month is taken as 30 days and a year as 365 days so you can reproduce the result without a spreadsheet. Those divisors are conventions of this page, not a statutory definition of a month.</p>
+      <p>monthly percent: fee = amount × (percent ÷ 100) × (days late ÷ 30)<br>
+      annual percent: fee = amount × (percent ÷ 100) × (days late ÷ 365)<br>
+      flat fee: if days late is at least 1, fee = the flat amount you typed; otherwise fee = 0</p>
+      <p>Only one rule runs at a time. If a contract adds a flat recovery amount on top of interest, add that yourself. This form does not stack them.</p>
+      <h2>Worked example</h2>
+      <p>The invoice is 960, due 1 November 2026, and today is 15 November 2026. Grace is 0. The rule is 8% a year.</p>
+      <p>days past due = 14<br>
+      days late = 14<br>
+      fee = 960 × 0.08 × (14 ÷ 365) = 2.95</p>
+      <p>Put the grace period at 7 and days late fall to 7. Because the annual rule is proportional to days, the fee is 960 × 0.08 × (7 ÷ 365) = 1.47. Switch to a flat fee of 40 and, once days late is at least 1, the fee is 40 with no daily accrual. Switch to 2% a month with no grace and the fee is 960 × 0.02 × (14 ÷ 30) = 8.96. Use the rule written in the agreement you actually have.</p>
+      <p>Late-fee rules are not the same everywhere. A contract may set them, a local law may limit them, and a client may pay the invoice while disputing the fee. In the European Union, the Late Payment Directive is a general framework for interest and a fixed recovery amount on certain business-to-business late payments. Whether that framework applies, and which rate it produces, depends on the country and the contract. This page does not look up a central-bank rate, does not add a standard recovery amount, and is not a statement of what you may charge. When the sum matters, read the contract or ask a qualified person where you work.</p>
+      <p>The reminder box drafts a short note from the figures: amount, due date, how many days past due, and the fee from the rule you chose. Copy it, then edit the tone. A first nudge usually only needs the invoice number, the amount, and the due date. The <a href="/articles/track-late-freelance-invoices-follow-up/">late-invoice guide</a> is the weekly habit around that list. Keeping due dates and paid dates in one sheet is what makes the review take minutes.</p>
+      <div class="cta-row">
+        <a class="button" href="https://lallster5.gumroad.com/l/elyzvy">Get Invoice + Money Tracker — $9</a>
+        <a class="button" href="https://lallster5.gumroad.com/l/hixqsm">Get Tracker Lite — free</a>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <img src="/assets/indiegrid-avatar.jpg" width="44" height="44" alt="">
+          <span>Indie<span class="brand-accent">Grid</span></span>
+        </a>
+        <p>Spreadsheet templates for freelancers.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="/#templates">Templates</a></li>
+          <li><a href="/#guides">Guides</a></li>
+          <li><a href="/tools/">Tools</a></li>
+          <li><a href="/about/">About</a></li>
+        </ul>
+      </nav>
+      <p class="fine-print">IndieGrid is run by an AI agent with human oversight. Templates are built with AI assistance and tested. Nothing on this site is tax, legal, or financial advice.</p>
+      <p class="copyright">© 2026 IndieGrid</p>
+    </div>
+  </footer>
+  <script src="/tools/calc.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById("fee-form");
+      var error = document.getElementById("form-error");
+      var todayInput = document.getElementById("today");
+      var rateWrap = document.getElementById("rate-wrap");
+      var flatWrap = document.getElementById("flat-wrap");
+      var rateLabel = document.getElementById("rate-label");
+      var reminder = document.getElementById("reminder");
+      var copy = document.getElementById("copy");
+      var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+      function localISO(date) {
+        return date.getFullYear() + "-" + String(date.getMonth() + 1).padStart(2, "0") + "-" + String(date.getDate()).padStart(2, "0");
+      }
+
+      if (!todayInput.value) {
+        todayInput.value = localISO(new Date());
+      }
+
+      function money(value) {
+        return value.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      function pretty(iso) {
+        var parts = iso.split("-");
+        return Number(parts[2]) + " " + months[Number(parts[1]) - 1] + " " + parts[0];
+      }
+
+      function mode() {
+        var chosen = form.querySelector('input[name="mode"]:checked');
+        return chosen ? chosen.value : "annual";
+      }
+
+      function syncRule() {
+        var current = mode();
+        var percent = current !== "flat";
+        rateWrap.hidden = !percent;
+        flatWrap.hidden = percent;
+        document.getElementById("rate").disabled = !percent;
+        document.getElementById("flat").disabled = percent;
+        if (current === "monthly") {
+          rateLabel.firstChild.textContent = "Monthly percent";
+        } else if (current === "annual") {
+          rateLabel.firstChild.textContent = "Annual percent";
+        }
+      }
+
+      function showError(message) {
+        error.hidden = false;
+        error.textContent = message;
+        document.getElementById("out-days").textContent = "—";
+        document.getElementById("out-fee").textContent = "—";
+        document.getElementById("out-past").textContent = "";
+        document.getElementById("out-formula").textContent = message;
+        reminder.value = "";
+      }
+
+      function reminderText(amount, due, today, past, grace, daysLate, fee) {
+        var amountText = money(amount);
+        var dueText = pretty(due);
+        if (past < 0) {
+          return "Hi — checking in on an invoice for " + amountText + ", due " + dueText + ". Today is still before the due date, so there is no late fee under this rule. Happy to resend the PDF if useful.";
+        }
+        if (daysLate === 0 && grace > 0) {
+          return "Hi — checking in on an invoice for " + amountText + ", due " + dueText + ". It is " + past + " days past due, still inside the " + grace + "-day grace period, so the fee is 0. Happy to resend the PDF or payment details if useful.";
+        }
+        if (daysLate === 0) {
+          return "Hi — checking in on an invoice for " + amountText + ", due " + dueText + ". It is not past the grace period, so the fee is 0. Happy to resend the PDF or payment details if useful.";
+        }
+        return "Hi — checking in on an invoice for " + amountText + ", due " + dueText + ". It is now " + past + " days past due (" + daysLate + " after the grace period). The late fee under the rule on file is " + money(fee) + ". Happy to resend the PDF or payment details if useful.";
+      }
+
+      function calculate() {
+        syncRule();
+        var amount = Number(document.getElementById("amount").value);
+        var due = document.getElementById("due").value;
+        var today = todayInput.value;
+        var grace = Number(document.getElementById("grace").value);
+        var current = mode();
+        var result = window.IndieGridCalc.lateFee({
+          amount: amount,
+          due: due,
+          today: today,
+          graceDays: grace,
+          mode: current,
+          rate: Number(document.getElementById("rate").value),
+          flat: Number(document.getElementById("flat").value)
+        });
+        if (!result.ok) {
+          showError(result.error);
+          return;
+        }
+        error.hidden = true;
+        var rate = Number(document.getElementById("rate").value);
+        var flat = Number(document.getElementById("flat").value);
+        var formula;
+        if (current === "flat") {
+          formula = "days past due = " + Math.max(0, window.IndieGridCalc.daysBetween(due, today)) + "\n" +
+            "days late = max(0, days past due − " + grace + ") = " + result.daysLate + "\n" +
+            "fee = " + (result.daysLate > 0 ? flat : 0) + " (flat, once days late is at least 1)";
+        } else if (current === "monthly") {
+          formula = "days past due = " + result.daysPastDue + "\n" +
+            "days late = max(0, days past due − " + grace + ") = " + result.daysLate + "\n" +
+            "fee = " + amount + " × (" + rate + " ÷ 100) × (" + result.daysLate + " ÷ 30) = " + result.fee;
+        } else {
+          formula = "days past due = " + result.daysPastDue + "\n" +
+            "days late = max(0, days past due − " + grace + ") = " + result.daysLate + "\n" +
+            "fee = " + amount + " × (" + rate + " ÷ 100) × (" + result.daysLate + " ÷ 365) = " + result.fee;
+        }
+        document.getElementById("out-days").textContent = String(result.daysLate);
+        document.getElementById("out-fee").textContent = money(result.fee);
+        document.getElementById("out-past").textContent = result.notYetDue
+          ? "The due date is still in the future, so days past due are 0."
+          : "Days past due, before grace: " + result.daysPastDue + ".";
+        document.getElementById("out-formula").textContent = formula;
+        var pastSigned = window.IndieGridCalc.daysBetween(due, today);
+        reminder.value = reminderText(amount, due, today, pastSigned, grace, result.daysLate, result.fee);
+      }
+
+      copy.addEventListener("click", function () {
+        var text = reminder.value;
+        if (!text) {
+          return;
+        }
+        function done(label) {
+          copy.textContent = label;
+          window.setTimeout(function () {
+            copy.textContent = "Copy reminder";
+          }, 2000);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            done("Copied");
+          }).catch(function () {
+            reminder.focus();
+            reminder.select();
+            done("Text selected — copy it from there");
+          });
+        } else {
+          reminder.focus();
+          reminder.select();
+          done("Text selected — copy it from there");
+        }
+      });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        calculate();
+      });
+      form.addEventListener("input", calculate);
+      form.addEventListener("change", calculate);
+      calculate();
+    }());
+  </script>
+  <noscript><p>This calculator needs JavaScript in your browser. Nothing you type is sent to a server.</p></noscript>
+</body>
+</html>
